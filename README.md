@@ -65,17 +65,15 @@ This application has undergone a complete visual redesign to provide a modern, e
 - **Danger Gradient**: `#eb3349` → `#f45c43` (Red)
 - **Background**: Animated purple gradient with 15s cycle
 
-## 📍 Repository Information
+## 📍 Repository & Links
 
-**Local Project Path**: `c:\Users\Käyttäjä\Desktop\go-web-perust-2`
+**GitHub Repository**: https://github.com/BerIdr/ToDoApp
 
-> **Note**: This is a local development project. It is not currently hosted in a public GitHub repository or deployed to any cloud platform. To share this code:
->
-> 1. Initialize a Git repository: `git init`
-> 2. Create a GitHub repository and push the code
-> 3. Deploy to a cloud platform (Heroku, Railway, Render, etc.) for live testing
+**Local Development**: 
+- Clone: `git clone https://github.com/BerIdr/ToDoApp.git`
+- Run locally: `http://localhost:9000`
 
-**API Access**: Currently running locally at `http://localhost:9000` when the application is started.
+**Database**: MongoDB Atlas (Cloud) - Free M0 Tier
 
 ## Features
 
@@ -151,38 +149,56 @@ _Search functionality: `?search=work` showing filtered results_
 Before running this application, make sure you have:
 
 - **Go 1.16+** installed
-- **MongoDB** running on port 27017 (default)
+- **MongoDB Atlas account** (free) OR **MongoDB** running locally
 
-## Installation
+## Installation & Setup
 
-1. Clone or download the project:
+### 1. Clone the repository
 
-   ```bash
-   git clone <repository-url>
-   cd go
-   ```
+```bash
+git clone https://github.com/BerIdr/ToDoApp.git
+cd ToDoApp
+```
 
-2. Install dependencies:
-   ```bash
-   go mod download
-   ```
+### 2. Install dependencies
 
-## Running the Application
+```bash
+go mod download
+```
 
-### Method 1: Run directly from source
+### 3. Setup MongoDB
 
+#### Option A: MongoDB Atlas (Recommended - Cloud, Free)
+
+1. Create account: https://www.mongodb.com/cloud/atlas/register
+2. Create **M0 FREE** cluster (no credit card needed)
+3. Create database user with username and password
+4. Whitelist IP: Add `0.0.0.0/0` in Network Access
+5. Get connection string from: Database → Connect → Drivers
+
+#### Option B: Local MongoDB
+
+Install MongoDB Community Server and start:
+```bash
+net start MongoDB
+```
+
+### 4. Run the application
+
+**With MongoDB Atlas:**
+```powershell
+$env:MONGO_URL="mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/"
+go run main.go
+```
+
+**With Local MongoDB:**
 ```bash
 go run main.go
 ```
 
-### Method 2: Build and run executable
-
-```bash
-# Build the application
-go build -o todo.exe main.go
-
-# Run the executable
-./todo.exe
+### 5. Open in browser
+```
+http://localhost:9000
 ```
 
 The application will start on port **9000** by default.
